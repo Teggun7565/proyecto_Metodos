@@ -1,0 +1,11 @@
+__________ Read-ME ____________
+
+#To do:
+	-Funcion que maneje el stamina (moverse de un lado a otro consume
+	stamina)
+	-Metodos de estructura de datos (un arbol, grafo, etc.) 
+		*Un estilo de skill tree o de mejoras
+		*Un sistema de puntaje que los ordene en una tabla
+		*Mas eventos en diferentes puntos (por el momento solo tiene
+		el de combate sencillo["1"] y el del borde["#"])
+		*AI que se mueva hacia el usuario a traves de la ruta mas corta.
