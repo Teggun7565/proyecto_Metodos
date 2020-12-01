@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from webweb import web
 
 
 # Inventario de objetos y parametros
@@ -31,6 +32,9 @@ def generador_mapa(n):
 
     # for x in range(n + 2):
     #     print(mapa_bordado[x])
+    web = Web(mapa)
+    web.display.scaleLinkWidth = True
+    web.show()
 
     return mapa_bordado
 #------------------------------------------------------
@@ -292,6 +296,7 @@ valorY = int(custom_Value / 2)
 mapaElegido[valorY][0] = "S"
 mapaElegido[valorY][custom_Value + 1] = "C"
 displayMap(mapaElegido, custom_Value)
+
 
 #------------------------------------------------------
 
