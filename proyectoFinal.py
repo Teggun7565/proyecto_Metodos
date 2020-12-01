@@ -16,8 +16,8 @@ def generador_mapa(n):
     mapa = [[random.choice(dis_porcentaje)
              for i in range(n)] for j in range(n)]
 
-    for i in range(n):
-        mapa[i][i] = "0"
+    # for i in range(n):
+    #     mapa[i][i] = "0"
 
     for i in range(n):
         for j in range(n):
