@@ -1,6 +1,5 @@
 import random
 import numpy as np
-# from webweb import Web
 
 
 # Inventario de objetos y parametros
@@ -17,24 +16,8 @@ def generador_mapa(n):
     mapa = [[random.choice(dis_porcentaje)
              for i in range(n)] for j in range(n)]
 
-    # for i in range(n):
-    #     mapa[i][i] = "0"
-
-    for i in range(n):
-        for j in range(n):
-            mapa[j][i] = mapa[i][j]
-
-    # for x in range(n):
-    #     print(mapa[x])
-
     mapa_bordado = np.pad(
         mapa, pad_width=1, mode="constant", constant_values="#")
-
-    # for x in range(n + 2):
-    #     print(mapa_bordado[x])
-    # web = Web(mapa)
-    # web.display.scaleLinkWidth = True
-    # web.show()
 
     return mapa_bordado
 #------------------------------------------------------
