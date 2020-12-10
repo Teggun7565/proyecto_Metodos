@@ -7,7 +7,7 @@ dis_porcentaje = ["0"] * 65 + ["1"] * 20 + ["2"] * 15
 stamina = 100
 vidaInicial = 100
 tutorial_combate = False
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo que genera una matriz adyacente que representara el mapa
@@ -33,18 +33,19 @@ def generador_mapa(n):
     #     print(mapa_bordado[x])
 
     return mapa_bordado
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo para imprimir el mapa actual
 def displayMap(mapa, n):
     for x in range(n + 2):
         print(mapa[x])
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo que controla el movimiento del usuario
 def movimiento(mapaElegido, posicion, n):
+    global vidaInicial
     posicion_pasada = None
     x = 0
     valorY = n / 2
@@ -83,7 +84,8 @@ def movimiento(mapaElegido, posicion, n):
 
         if posicion == "1":
             print("Te enfrentas contra un enemigo!\n")
-            print("--------------------------------------------------------------\n")
+            print("-----------------------------------------------------------"
+                  "---\n")
             combate()
 
         if posicion == "#":
@@ -92,21 +94,27 @@ def movimiento(mapaElegido, posicion, n):
             y = y_pasada
             posicion = mapaElegido[y][x]
 
+        if posicion == "2":
+            print("Encontraste una posion magica!")
+            vidaInicial = vidaInicial + 10
+
     print("\nHaz capturado el castillo enemigo!")
     print("ERES VICTORIOSO!")
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo de combate, genera las escenas de combate
 def combate():
     global tutorial_combate
-    if tutorial_combate == False:
+    if tutorial_combate is False:
         print("\tHaz empezado una plea contra un enemigo!")
         print("\tEsto ssignifica que solo uno saldra vivo de esto!")
 
-        print("\nComo Jugar\n\nEl jugador tomara turnos en elegir movimientos.")
+        print("\nComo Jugar\n\nEl jugador tomara turnos en elegir"
+              "movimientos.")
         print("Cada movimiento tiene su rango de daño, sea largo o corto.")
-        print("Incluso hasta te puedes curar! (Nota: Puedes fallar el movimiento!)")
+        print("Incluso hasta te puedes curar! (Nota: Puedes fallar el"
+              "movimiento!)")
 
         print("\nLos oponentes comienzan con 100 de vida cada uno.")
         print("El primero al reducir a su enemigo a 0 sera el ganador!")
@@ -145,7 +153,9 @@ def combate():
                      "Curar": random.randint(20, 25)}
 
             if turnoJugador:
-                print("\nElija un movimiento:\n1. Golpe (Daño entre 18-25)\n2. Golpe Fuerte (Daño entre 10-35)\n3. Curar (Restaurar de 20-25 de vida)\n")
+                print("\nElija un movimiento:\n1. Golpe (Daño entre 18-25)\n2."
+                      "Golpe Fuerte (Daño entre 10-35)\n3. Curar (Restaurar"
+                      "de 20-25 de vida)\n")
 
                 movimiento_jugador = input("> ").lower()
 
@@ -173,7 +183,8 @@ def combate():
                         print("\nUsaste Curar. Recuperaste ",
                               movimiento_jugador, " de vida.")
                     else:
-                        print("\nEso no es un movimiento valido; intente de nuevo.")
+                        print("\nEso no es un movimiento valido;"
+                              "intente de nuevo.")
                         continue
 
             else:
@@ -220,11 +231,13 @@ def combate():
                                 imoves = random.choice(imoves)
                                 movimiento_enemigo = moves[imoves]
                                 print("\nEl enemigo utiliza ", imoves,
-                                      ". Hizo ", movimiento_enemigo, " de daño.")
+                                      ". Hizo ", movimiento_enemigo, " de"
+                                      "daño.")
                             elif vidaActual <= 35:
                                 movimiento_enemigo = moves["Golpe Fuerte"]
                                 print(
-                                    "\nEl enemigo utiliza Golpe Fuerte. Hizo ", movimiento_enemigo, " de daño.")
+                                    "\nEl enemigo utiliza Golpe Fuerte."
+                                    "Hizo ", movimiento_enemigo, " de daño.")
 
             if subirVida:
                 if turnoJugador:
@@ -268,20 +281,22 @@ def combate():
             re_set = input(">").lower()
 
         if ganador != "Jugador":
-            if re_set == "si" or "Si":
+            if re_set == "si":
                 reset()
             else:
                 exit()
 
+        vidaInicial = vidaActual + 20
+
         if ganador == "Jugador":
             jugando = False
 
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo de estados, donde se toma registro del estado del usuario
 
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # posicionamiento en el tablero
@@ -293,7 +308,7 @@ mapaElegido[valorY][0] = "S"
 mapaElegido[valorY][custom_Value + 1] = "C"
 displayMap(mapaElegido, custom_Value)
 
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo principal, el que corre todos los metodos (main)
@@ -303,11 +318,12 @@ def main():
 
 
 main()
-#------------------------------------------------------
+# ------------------------------------------------------
 
 
 # metodo que resetea los estados
 def reset():
+    global dis_porcentaje, stamina, vidaInicial, tutorial_combate
     print("\n\n-------------------Nueva Partida-------------------\n\n")
     custom_Value = int(input("Tamaño de matriz:\n>>>"))
     dis_porcentaje = ["0"] * 65 + ["1"] * 20 + ["2"] * 15
@@ -322,4 +338,5 @@ def reset():
     displayMap(mapaElegido, custom_Value)
     movimiento(mapaElegido, posicion, custom_Value)
 
-#------------------------------------------------------
+# ------------------------------------------------------
+
